@@ -1,18 +1,16 @@
+{% extends 'blog/base.html' %}
 
-<html>
-    <head>
-        <title>Sam Khano's Page</title>
-    </head>
-    <body>
-        <div>
-            <h1><a href="https://www.linkedin.com/in/samule-khano-a575b89b">Welcome</a></h1>
-        </div>
-        {% for post in posts %}
-            <div>
-                <p>published: {{ post.published_date }}</p>
-                <h1><a href="https://www.djangoproject.com">{{ post.title }}</a></h1> 
-                <p>{{ post.text|linebreaks }}</p>
+{% block content %}
+    {% for post in posts %}
+        <div class="post">
+            <div class="date">
+                {{ post.author }}
+                <p></p>
+                {{ post.published_date }}
             </div>
-        {% endfor %}
-    </body>
-</html>
+            <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+            <p>{{ post.text|linebreaks }}</p>
+        </div>
+    {% endfor %}
+{% endblock %}
+
